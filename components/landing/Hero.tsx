@@ -1,108 +1,108 @@
 import React from 'react';
-import { ArrowRight, Play, Trophy, Sparkles } from 'lucide-react';
+import { ArrowRight, Layers, Layout, BarChart2, GitMerge } from 'lucide-react';
 
 interface HeroProps {
   onStart: () => void;
 }
 
 const Hero: React.FC<HeroProps> = ({ onStart }) => {
+  const scrollToFeatures = () => {
+    const el = document.getElementById('features');
+    if (el) el.scrollIntoView({ behavior: 'smooth' });
+  };
+
   return (
     <div className="relative pt-32 pb-20 sm:pt-40 sm:pb-24 w-full flex flex-col items-center justify-center overflow-hidden">
       {/* Background Effects */}
       <div className="absolute inset-0 pointer-events-none">
-        {/* Primary Glow */}
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[600px] bg-neon/15 blur-[120px] rounded-full opacity-60" />
-        {/* Secondary Accent */}
-        <div className="absolute top-40 left-1/4 w-[400px] h-[400px] bg-emerald-400/10 blur-[120px] rounded-full" />
-        {/* Grid Pattern */}
-        <div className="absolute inset-0 opacity-[0.02]" style={{
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[600px] bg-neon/10 blur-[120px] rounded-full opacity-50" />
+        <div className="absolute top-40 left-1/4 w-[400px] h-[400px] bg-emerald-500/5 blur-[100px] rounded-full" />
+        <div className="absolute inset-0 opacity-[0.03]" style={{
           backgroundImage: 'linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px)',
-          backgroundSize: '60px 60px'
+          backgroundSize: '40px 40px'
         }} />
       </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
-        {/* Version Badge */}
-        <div className="inline-flex items-center gap-2.5 px-4 py-2 rounded-full bg-surface-elevated/60 backdrop-blur-md border border-white/[0.08] text-neon text-xs font-bold tracking-wider mb-8 uppercase animate-fade-in-up shadow-lg">
-          <Sparkles size={14} className="animate-pulse" />
-          <span className="w-1.5 h-1.5 rounded-full bg-neon animate-pulse" />
-          v1.0 Now Live
-        </div>
-
         {/* Headline */}
-        <h1 className="text-5xl md:text-7xl lg:text-8xl font-black tracking-tight text-white mb-6 leading-[1.1] animate-fade-in-up" style={{ animationDelay: '0.1s' }}>
-          Create Stunning <br />
-          <span className="text-transparent bg-clip-text bg-gradient-to-r from-neon via-emerald-400 to-teal-400">
-            Lineups in Seconds
+        <h1 className="text-5xl md:text-7xl lg:text-8xl font-black tracking-tight text-white mb-6 leading-[1.1] animate-fade-in-up">
+          QuickMatch: Your All-In-One <br />
+          <span className="text-transparent bg-clip-text bg-gradient-to-r from-neon to-emerald-400">
+            Sports Graphics Studio
           </span>
         </h1>
 
         {/* Subtitle */}
-        <p className="mt-6 text-lg md:text-xl text-gray-400 max-w-2xl mx-auto mb-12 leading-relaxed animate-fade-in-up" style={{ animationDelay: '0.2s' }}>
-          The fastest drag-and-drop lineup builder for football and cricket creators.
-          Professional visuals, zero friction.
+        <p className="mt-6 text-lg md:text-xl text-gray-400 max-w-2xl mx-auto mb-10 leading-relaxed animate-fade-in-up" style={{ animationDelay: '0.1s' }}>
+          Create lineups, tactics boards, stats cards, and tournament brackets in minutes — fast, free, and built for creators.
         </p>
 
-        {/* CTA Buttons */}
-        <div className="flex flex-col sm:flex-row items-center justify-center gap-4 animate-fade-in-up" style={{ animationDelay: '0.3s' }}>
+        {/* Buttons */}
+        <div className="flex flex-col sm:flex-row items-center justify-center gap-4 animate-fade-in-up" style={{ animationDelay: '0.2s' }}>
           <button
             onClick={onStart}
-            className="group w-full sm:w-auto px-8 py-4 bg-neon hover:bg-neon-hover text-black font-bold text-lg rounded-2xl transition-all duration-300 transform hover:scale-105 hover:shadow-glow flex items-center justify-center gap-3"
+            className="group px-8 py-4 bg-neon hover:bg-neon-hover text-black font-bold text-lg rounded-2xl transition-all duration-300 transform hover:scale-105 hover:shadow-glow flex items-center justify-center gap-2 min-w-[180px]"
           >
-            Start Building
+            Start Creating
             <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform" />
           </button>
 
           <button
-            onClick={() => window.location.hash = '#/templates'}
-            className="group w-full sm:w-auto px-8 py-4 bg-surface-elevated/60 backdrop-blur-md border border-white/10 text-white font-semibold text-lg rounded-2xl hover:bg-surface-hover hover:border-white/20 transition-all duration-300 flex items-center justify-center gap-3"
+            onClick={scrollToFeatures}
+            className="group px-8 py-4 bg-surface-elevated/60 backdrop-blur-md border border-white/10 text-white font-semibold text-lg rounded-2xl hover:bg-surface-hover hover:border-white/20 transition-all duration-300 min-w-[180px]"
           >
-            <Play size={20} className="text-neon group-hover:scale-110 transition-transform" />
-            View Templates
+            Explore Tools
           </button>
         </div>
 
-        {/* Mock Preview Card */}
-        <div className="mt-20 relative mx-auto max-w-4xl transform hover:scale-[1.01] transition-all duration-500 animate-fade-in-up" style={{ animationDelay: '0.5s' }}>
-          {/* Glow Effect */}
-          <div className="absolute -inset-2 bg-gradient-to-b from-neon/20 via-neon/5 to-transparent rounded-3xl blur-xl opacity-60" />
+        {/* Visual Preview */}
+        <div className="mt-20 relative mx-auto max-w-5xl transform hover:scale-[1.01] transition-all duration-500 animate-fade-in-up" style={{ animationDelay: '0.3s' }}>
+          <div className="absolute -inset-1 bg-gradient-to-b from-neon/20 to-transparent rounded-3xl blur-xl opacity-40" />
 
-          {/* Card */}
-          <div className="relative rounded-2xl border border-white/[0.08] overflow-hidden shadow-dark-xl bg-surface-elevated aspect-[16/9] flex flex-col">
-            {/* Mock Header */}
-            <div className="h-12 border-b border-white/[0.06] flex items-center px-4 gap-3 bg-surface-deep">
-              <div className="flex gap-2">
-                <div className="w-3 h-3 rounded-full bg-red-500/60" />
-                <div className="w-3 h-3 rounded-full bg-yellow-500/60" />
-                <div className="w-3 h-3 rounded-full bg-green-500/60" />
+          <div className="relative rounded-2xl border border-white/[0.08] overflow-hidden shadow-2xl bg-[#121212] aspect-[16/9] flex flex-col">
+            {/* Mock Editor UI */}
+            <div className="h-10 border-b border-white/[0.06] flex items-center px-4 gap-3 bg-[#1A1A1A]">
+              <div className="flex gap-1.5">
+                <div className="w-2.5 h-2.5 rounded-full bg-red-500/40" />
+                <div className="w-2.5 h-2.5 rounded-full bg-yellow-500/40" />
+                <div className="w-2.5 h-2.5 rounded-full bg-green-500/40" />
               </div>
-              <div className="ml-4 h-6 w-64 bg-white/[0.04] rounded-full" />
+              <div className="ml-4 h-5 w-48 bg-white/[0.04] rounded-md" />
             </div>
 
-            {/* Mock Content */}
-            <div className="flex-1 p-6 relative flex items-center justify-center bg-surface">
-              <div className="w-full h-full bg-gradient-to-br from-emerald-900/30 to-emerald-950/30 rounded-xl border border-white/[0.05] relative overflow-hidden">
-                {/* Mini Field Lines */}
-                <div className="absolute inset-4 border-2 border-white/10 rounded opacity-40" />
-                <div className="absolute top-1/2 left-4 right-4 h-px bg-white/10 opacity-40" />
-                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-24 h-24 border-2 border-white/10 rounded-full opacity-40" />
+            <div className="flex-1 flex overflow-hidden">
+              {/* Sidebar Mock */}
+              <div className="w-64 border-r border-white/[0.06] bg-[#151515] p-4 hidden md:flex flex-col gap-3">
+                <div className="h-8 bg-white/[0.04] rounded w-full" />
+                <div className="h-8 bg-white/[0.04] rounded w-3/4" />
+                <div className="mt-4 flex gap-2">
+                  <div className="h-12 w-12 bg-white/[0.04] rounded-full" />
+                  <div className="h-12 w-12 bg-white/[0.04] rounded-full" />
+                  <div className="h-12 w-12 bg-white/[0.04] rounded-full" />
+                </div>
+              </div>
 
-                {/* Player Nodes */}
-                <div className="absolute top-[80%] left-[50%] -translate-x-1/2 -translate-y-1/2">
-                  <div className="w-10 h-10 rounded-full bg-neon border-[3px] border-surface flex items-center justify-center font-bold text-sm shadow-glow">1</div>
-                </div>
-                <div className="absolute top-[60%] left-[25%] -translate-x-1/2 -translate-y-1/2">
-                  <div className="w-10 h-10 rounded-full bg-white border-[3px] border-surface flex items-center justify-center font-bold text-sm shadow-lg">4</div>
-                </div>
-                <div className="absolute top-[60%] right-[20%] translate-x-1/2 -translate-y-1/2">
-                  <div className="w-10 h-10 rounded-full bg-white border-[3px] border-surface flex items-center justify-center font-bold text-sm shadow-lg">3</div>
-                </div>
+              {/* Canvas Mock */}
+              <div className="flex-1 bg-[#0E0E0E] relative p-8 flex items-center justify-center">
+                <div className="w-[80%] aspect-[4/3] bg-emerald-900/20 border border-white/10 rounded-lg relative overflow-hidden">
+                  {/* Pitch markings */}
+                  <div className="absolute inset-4 border border-white/20 rounded opacity-30" />
+                  <div className="absolute top-1/2 w-full h-px bg-white/20 opacity-30" />
+                  <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-20 h-20 border border-white/20 rounded-full opacity-30" />
 
-                {/* Floating UI Elements */}
-                <div className="absolute top-4 right-4 bg-surface-deep/80 backdrop-blur-md border border-white/[0.08] p-2.5 rounded-xl flex gap-2 shadow-lg">
-                  <div className="w-7 h-7 rounded-lg bg-neon/20 border border-neon/30" />
-                  <div className="w-7 h-7 rounded-lg bg-white/[0.06] border border-white/[0.08]" />
+                  {/* Player dots */}
+                  <div className="absolute top-[80%] left-[50%] -translate-x-1/2 w-8 h-8 bg-neon rounded-full border-2 border-black shadow-lg" />
+                  <div className="absolute top-[60%] left-[20%] w-8 h-8 bg-white rounded-full border-2 border-black shadow-lg" />
+                  <div className="absolute top-[60%] right-[20%] w-8 h-8 bg-white rounded-full border-2 border-black shadow-lg" />
+                  <div className="absolute top-[40%] left-[35%] w-8 h-8 bg-white rounded-full border-2 border-black shadow-lg" />
+                  <div className="absolute top-[40%] right-[35%] w-8 h-8 bg-white rounded-full border-2 border-black shadow-lg" />
                 </div>
+              </div>
+
+              {/* Right Panel Mock */}
+              <div className="w-64 border-l border-white/[0.06] bg-[#151515] p-4 hidden lg:flex flex-col gap-3">
+                <div className="h-32 bg-white/[0.04] rounded w-full" />
+                <div className="h-10 bg-neon rounded w-full mt-auto opacity-80" />
               </div>
             </div>
           </div>
