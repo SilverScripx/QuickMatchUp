@@ -1,0 +1,5 @@
+{
+  "name": "QuickMatch Lineup Engine",
+  "description": "A lightweight, pure frontend tool to build and export football and cricket lineups.",
+  "requestFramePermissions": []
+}
