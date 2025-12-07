@@ -1,102 +1,137 @@
 <!DOCTYPE html>
 <html lang="en" class="dark">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>QuickMatch Lineup Engine</title>
-    <script>
-      // Polyfill process for libraries like react-dnd that expect it
-      window.process = {
-        env: {
-          NODE_ENV: 'production'
-        }
-      };
-    </script>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-      tailwind.config = {
-        darkMode: 'class',
-        theme: {
-          extend: {
-            fontFamily: {
-              sans: ['Inter', 'system-ui', 'sans-serif'],
+
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>QuickMatch Lineup Engine</title>
+  <script>
+    // Polyfill process for libraries like react-dnd that expect it
+    window.process = {
+      env: {
+        NODE_ENV: 'production'
+      }
+    };
+  </script>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'system-ui', 'sans-serif'],
+          },
+          colors: {
+            neon: '#0AFF6C',
+            'neon-hover': '#09E661',
+            'neon-muted': 'rgba(10, 255, 108, 0.15)',
+            'neon-glow': 'rgba(10, 255, 108, 0.4)',
+            surface: {
+              deep: '#0A0A0A',
+              base: '#0E0E0E',
+              DEFAULT: '#141414',
+              elevated: '#1A1A1A',
+              hover: '#222222',
             },
-            colors: {
-              neon: '#0AFF6C',
-              'neon-hover': '#09E661',
-              'neon-muted': 'rgba(10, 255, 108, 0.15)',
-              'neon-glow': 'rgba(10, 255, 108, 0.4)',
-              surface: {
-                deep: '#0A0A0A',
-                base: '#0E0E0E',
-                DEFAULT: '#141414',
-                elevated: '#1A1A1A',
-                hover: '#222222',
-              },
+          },
+          borderRadius: {
+            'xl': '14px',
+            '2xl': '18px',
+            '3xl': '24px',
+          },
+          boxShadow: {
+            'glow': '0 0 20px rgba(10, 255, 108, 0.4)',
+            'glow-sm': '0 0 10px rgba(10, 255, 108, 0.3)',
+            'dark-lg': '0 8px 24px rgba(0, 0, 0, 0.6)',
+            'dark-xl': '0 16px 48px rgba(0, 0, 0, 0.7)',
+          },
+          animation: {
+            'fade-in': 'fadeIn 0.3s ease forwards',
+            'fade-in-up': 'fadeInUp 0.5s ease-out forwards',
+            'fade-in-down': 'fadeInDown 0.5s ease-out forwards',
+            'scale-in': 'scaleIn 0.2s ease forwards',
+            'glow-pulse': 'glowPulse 2s infinite',
+          },
+          keyframes: {
+            fadeIn: {
+              '0%': { opacity: '0' },
+              '100%': { opacity: '1' },
             },
-            borderRadius: {
-              'xl': '14px',
-              '2xl': '18px',
-              '3xl': '24px',
+            fadeInUp: {
+              '0%': { opacity: '0', transform: 'translateY(20px)' },
+              '100%': { opacity: '1', transform: 'translateY(0)' },
             },
-            boxShadow: {
-              'glow': '0 0 20px rgba(10, 255, 108, 0.4)',
-              'glow-sm': '0 0 10px rgba(10, 255, 108, 0.3)',
-              'dark-lg': '0 8px 24px rgba(0, 0, 0, 0.6)',
-              'dark-xl': '0 16px 48px rgba(0, 0, 0, 0.7)',
+            fadeInDown: {
+              '0%': { opacity: '0', transform: 'translateY(-20px)' },
+              '100%': { opacity: '1', transform: 'translateY(0)' },
             },
-            animation: {
-              'fade-in': 'fadeIn 0.3s ease forwards',
-              'fade-in-up': 'fadeInUp 0.5s ease-out forwards',
-              'fade-in-down': 'fadeInDown 0.5s ease-out forwards',
-              'scale-in': 'scaleIn 0.2s ease forwards',
-              'glow-pulse': 'glowPulse 2s infinite',
+            scaleIn: {
+              '0%': { opacity: '0', transform: 'scale(0.95)' },
+              '100%': { opacity: '1', transform: 'scale(1)' },
             },
-            keyframes: {
-              fadeIn: {
-                '0%': { opacity: '0' },
-                '100%': { opacity: '1' },
-              },
-              fadeInUp: {
-                '0%': { opacity: '0', transform: 'translateY(20px)' },
-                '100%': { opacity: '1', transform: 'translateY(0)' },
-              },
-              fadeInDown: {
-                '0%': { opacity: '0', transform: 'translateY(-20px)' },
-                '100%': { opacity: '1', transform: 'translateY(0)' },
-              },
-              scaleIn: {
-                '0%': { opacity: '0', transform: 'scale(0.95)' },
-                '100%': { opacity: '1', transform: 'scale(1)' },
-              },
-              glowPulse: {
-                '0%, 100%': { boxShadow: '0 0 10px rgba(10, 255, 108, 0.3)' },
-                '50%': { boxShadow: '0 0 25px rgba(10, 255, 108, 0.5)' },
-              },
+            glowPulse: {
+              '0%, 100%': { boxShadow: '0 0 10px rgba(10, 255, 108, 0.3)' },
+              '50%': { boxShadow: '0 0 25px rgba(10, 255, 108, 0.5)' },
             },
-            transitionTimingFunction: {
-              'spring': 'cubic-bezier(0.34, 1.56, 0.64, 1)',
-            },
-          }
+          },
+          transitionTimingFunction: {
+            'spring': 'cubic-bezier(0.34, 1.56, 0.64, 1)',
+          },
         }
       }
-    </script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
-    <style>
-      /* Base Styles - Enhanced */
-      *, *::before, *::after { box-sizing: border-box; }
-      html { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
-      body { font-family: 'Inter', system-ui, sans-serif; background-color: #0A0A0A; }
-      ::selection { background: #0AFF6C; color: #000; }
-      :focus-visible { outline: 2px solid #0AFF6C; outline-offset: 2px; }
-      
-      /* Scrollbar */
-      ::-webkit-scrollbar { width: 6px; height: 6px; }
-      ::-webkit-scrollbar-track { background: transparent; }
-      ::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); border-radius: 999px; }
-      ::-webkit-scrollbar-thumb:hover { background: rgba(255,255,255,0.2); }
-    </style>
+    }
+  </script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
+    rel="stylesheet">
+  <style>
+    /* Base Styles - Enhanced */
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+    }
+
+    html {
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    body {
+      font-family: 'Inter', system-ui, sans-serif;
+      background-color: #0A0A0A;
+    }
+
+    ::selection {
+      background: #0AFF6C;
+      color: #000;
+    }
+
+    :focus-visible {
+      outline: 2px solid #0AFF6C;
+      outline-offset: 2px;
+    }
+
+    /* Scrollbar */
+    ::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+
+    ::-webkit-scrollbar-track {
+      background: transparent;
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 999px;
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+      background: rgba(255, 255, 255, 0.2);
+    }
+  </style>
   <script type="importmap">
 {
   "imports": {
@@ -116,23 +151,22 @@
   }
 }
 </script>
-<!-- Polyfill for mobile drag and drop support with HTML5 Backend -->
-<script src="https://cdn.jsdelivr.net/npm/mobile-drag-drop@2.3.0-rc.2/index.min.js"></script>
-<script>
-  // Optional: Only apply polyfill on touch devices
-  if (/iPad|iPhone|iPod|Android/.test(navigator.userAgent)) {
-    MobileDragDrop.polyfill({
-      dragImageTranslateOverride: MobileDragDrop.scrollBehaviourDragImageTranslateOverride
-    });
-  }
-</script>
-<link rel="stylesheet" href="/index.css">
+  <!-- Polyfill for mobile drag and drop support with HTML5 Backend -->
+  <script src="https://cdn.jsdelivr.net/npm/mobile-drag-drop@2.3.0-rc.2/index.min.js"></script>
+  <script>
+    // Optional: Only apply polyfill on touch devices
+    if (/iPad|iPhone|iPod|Android/.test(navigator.userAgent)) {
+      MobileDragDrop.polyfill({
+        dragImageTranslateOverride: MobileDragDrop.scrollBehaviourDragImageTranslateOverride
+      });
+    }
+  </script>
+  <link rel="stylesheet" href="/index.css">
 </head>
-  <body>
-    <div id="root"></div>
-    <script type="module" src="./index.tsx"></script>
-    <script type="module" src="/index.tsx"></script>
-    <!-- Adsterra Script -->
-    <script type="text/javascript" src="//pl28207549.effectivegatecpm.com/31/3d/19/313d193009afa218c49842cbde3c1fcb.js"></script>
+
+<body>
+  <div id="root"></div>
+  <script type="module" src="/index.tsx"></script>
 </body>
+
 </html>
